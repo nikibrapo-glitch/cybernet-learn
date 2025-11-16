@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberNet Learn - Networking for Cybersecurity</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a, .nav-links button {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .nav-links a:hover, .nav-links button:hover {
+            color: var(--secondary);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .auth-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .auth-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .auth-tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .topic-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .topic-icon {
+            background-color: var(--secondary);
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .topic-content {
+            padding: 1.5rem;
+        }
+        
+        .topic-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .topic-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .test-section {
+            background-color: var(--light);
+        }
+        
+        .quiz-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quiz-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .quiz-option.selected {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .quiz-option.correct {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .quiz-results {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .quiz-results h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .learning-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .learning-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .learning-text {
+            margin-bottom: 2rem;
+        }
+        
+        .learning-text h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .learning-text p {
+            margin-bottom: 1rem;
+        }
+        
+        .learning-image {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .learning-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .learning-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .concept-box {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .concept-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .dashboard-section {
+            background-color: var(--light);
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-summary {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .progress-item:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-info {
+            flex: 1;
+        }
+        
+        .progress-percentage {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-left: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .active-section {
+            display: block;
+        }
+        
+        .error-message {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication Section -->
+    <section class="auth-section active-section" id="auth-section">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="register">Register</button>
+            </div>
+            
+            <form class="auth-form active" id="login-form">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">Welcome Back</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div id="login-error" class="error-message"></div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+            </form>
+            
+            <form class="auth-form" id="register-form">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">Create Account</h2>
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirm Password</label>
+                    <input type="password" id="register-confirm" required>
+                </div>
+                <div id="register-error" class="error-message"></div>
+                <button type="submit" class="btn" style="width: 100%;">Register</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Main Application (Hidden until login) -->
+    <div id="app" class="hidden">
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">Cyber<span>Net</span> Learn</div>
+                    <ul class="nav-links">
+                        <li><a class="nav-link" data-section="home">Home</a></li>
+                        <li><a class="nav-link" data-section="dashboard">Dashboard</a></li>
+                        <li><a class="nav-link" data-section="topics">Learning Topics</a></li>
+                        <li><a class="nav-link" data-section="test">Test Yourself</a></li>
+                        <li class="user-info">
+                            <div class="avatar" id="user-avatar">U</div>
+                            <span id="user-name">User</span>
+                            <button id="logout-btn">Logout</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero active-section" id="home-section">
+            <div class="container">
+                <h1>Learn Networking for Cybersecurity</h1>
+                <p>Master the fundamentals of networking in simple terms to build a strong foundation for your cybersecurity career.</p>
+                <button class="btn section-btn" data-section="topics">Start Learning</button>
+                <button class="btn btn-secondary section-btn" data-section="test">Take a Test</button>
+            </div>
+        </section>
+
+        <section id="dashboard-section" class="hidden">
+            <div class="container">
+                <h2 class="section-title">Your Learning Dashboard</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-progress">0%</div>
+                        <div>Overall Progress</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completed-lessons">0</div>
+                        <div>Lessons Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-topics">6</div>
+                        <div>Learning Topics</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="last-active">Today</div>
+                        <div>Last Active</div>
+                    </div>
+                </div>
+                
+                <div class="progress-summary">
+                    <h3 style="margin-bottom: 1rem;">Your Progress</h3>
+                    <div id="progress-list">
+                        <!-- Progress items will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="topics-section" class="hidden">
+            <div class="container">
+                <h2 class="section-title">Learning Topics</h2>
+                <div class="topics-grid">
+                    <div class="topic-card" data-topic="networking-basics">
+                        <div class="topic-icon">🌐</div>
+                        <div class="topic-content">
+                            <h3>What is a Network?</h3>
+                            <p>Understand the basic concept of computer networks and how devices communicate with each other.</p>
+                            <div class="progress-bar">
+                                <div class="progress" data-progress="0"></div>
+                            </div>
+                            <button class="btn start-learning" data-topic="networking-basics">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card" data-topic="ip-addresses">
+                        <div class="topic-icon">📍</div>
+                        <div class="topic-content">
+                            <h3>IP Addresses & Subnetting</h3>
+                            <p>Learn about IP addresses, their types, and how to divide networks using subnetting.</p>
+                            <div class="progress-bar">
+                                <div class="progress" data-progress="0"></div>
+                            </div>
+                            <button class="btn start-learning" data-topic="ip-addresses">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card" data-topic="tcp-ip">
+                        <div class="topic-icon">🔗</div>
+                        <div class="topic-content">
+                            <h3>TCP/IP Protocol Suite</h3>
+                            <p>Explore the foundational protocols that power the internet and modern networks.</p>
+                            <div class="progress-bar">
+                                <div class="progress" data-progress="0"></div>
+                            </div>
+                            <button class="btn start-learning" data-topic="tcp-ip">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card" data-topic="network-devices">
+                        <div class="topic-icon">🖧</div>
+                        <div class="topic-content">
+                            <h3>Network Devices</h3>
+                            <p>Get familiar with routers, switches, firewalls, and other essential networking hardware.</p>
+                            <div class="progress-bar">
+                                <div class="progress" data-progress="0"></div>
+                            </div>
+                            <button class="btn start-learning" data-topic="network-devices">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card" data-topic="network-security">
+                        <div class="topic-icon">🔒</div>
+                        <div class="topic-content">
+                            <h3>Network Security Basics</h3>
+                            <p>Learn fundamental security concepts and common threats to network infrastructure.</p>
+                            <div class="progress-bar">
+                                <div class="progress" data-progress="0"></div>
+                            </div>
+                            <button class="btn start-learning" data-topic="network-security">Start Learning</button>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card" data-topic="network-attacks">
+                        <div class="topic-icon">⚔️</div>
+                        <div class="topic-content">
+                            <h3>Common Network Attacks</h3>
+                            <p>Understand how attackers exploit network vulnerabilities and how to defend against them.</p>
+                            <div class="progress-bar">
+                                <div class="progress" data-progress="0"></div>
+                            </div>
+                            <button class="btn start-learning" data-topic="network-attacks">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-section" class="hidden">
+            <div class="container">
+                <div class="learning-content">
+                    <div class="learning-header">
+                        <h2 id="learning-topic-title">What is a Network?</h2>
+                        <p>Progress: <span id="learning-progress">0%</span></p>
+                    </div>
+                    
+                    <div class="learning-text" id="learning-content">
+                        <!-- Content will be dynamically loaded here -->
+                    </div>
+                    
+                    <div class="learning-navigation">
+                        <button class="btn" id="prev-lesson">Previous</button>
+                        <button class="btn" id="mark-complete">Mark as Complete</button>
+                        <button class="btn" id="next-lesson">Next</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-section hidden" id="test-section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h3>Networking Fundamentals Quiz</h3>
+                        <p>Question <span id="question-number">1</span> of <span id="total-questions">5</span></p>
+                    </div>
+                    
+                    <div class="quiz-question" id="question">
+                        What does IP stand for in networking?
+                    </div>
+                    
+                    <div class="quiz-options" id="options">
+                        <div class="quiz-option" data-value="0">Internet Protocol</div>
+                        <div class="quiz-option" data-value="1">Internal Processing</div>
+                        <div class="quiz-option" data-value="2">International Provider</div>
+                        <div class="quiz-option" data-value="3">Internal Protocol</div>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="btn" id="prev-btn" disabled>Previous</button>
+                        <button class="btn" id="next-btn">Next</button>
+                        <button class="btn" id="submit-btn" style="display: none;">Submit Quiz</button>
+                    </div>
+                    
+                    <div class="quiz-results hidden" id="results">
+                        <h2>Quiz Results</h2>
+                        <div class="score">Your Score: <span id="score-value">0</span>/5</div>
+                        <p id="result-message"></p>
+                        <button class="btn" id="retry-btn">Try Again</button>
+                        <button class="btn btn-secondary" id="back-to-topics">Back to Topics</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>CyberNet Learn - Simplifying Networking for Cybersecurity Beginners</p>
+                <p>&copy; 2023 CyberNet Learn. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // User Management System
+        class UserManager {
+            constructor() {
+                this.currentUser = null;
+                this.users = JSON.parse(localStorage.getItem('cybernet-users')) || {};
+                this.init();
+            }
+            
+            init() {
+                // Check if user is already logged in
+                const savedUser = localStorage.getItem('cybernet-current-user');
+                if (savedUser) {
+                    this.currentUser = JSON.parse(savedUser);
+                    this.showApp();
+                }
+            }
+            
+            register(name, email, password) {
+                if (this.users[email]) {
+                    return { success: false, message: 'Email already registered' };
+                }
+                
+                if (password.length < 6) {
+                    return { success: false, message: 'Password must be at least 6 characters' };
+                }
+                
+                // Create new user
+                const userId = 'user_' + Date.now();
+                this.users[email] = {
+                    id: userId,
+                    name: name,
+                    email: email,
+                    password: password, // In a real app, this would be hashed
+                    createdAt: new Date().toISOString(),
+                    progress: {
+                        'networking-basics': 0,
+                        'ip-addresses': 0,
+                        'tcp-ip': 0,
+                        'network-devices': 0,
+                        'network-security': 0,
+                        'network-attacks': 0
+                    },
+                    completedLessons: {},
+                    quizScores: [],
+                    lastActive: new Date().toISOString()
+                };
+                
+                localStorage.setItem('cybernet-users', JSON.stringify(this.users));
+                return { success: true, message: 'Registration successful' };
+            }
+            
+            login(email, password) {
+                const user = this.users[email];
+                if (!user) {
+                    return { success: false, message: 'User not found' };
+                }
+                
+                if (user.password !== password) {
+                    return { success: false, message: 'Invalid password' };
+                }
+                
+                this.currentUser = user;
+                user.lastActive = new Date().toISOString();
+                this.users[email] = user;
+                localStorage.setItem('cybernet-users', JSON.stringify(this.users));
+                localStorage.setItem('cybernet-current-user', JSON.stringify(user));
+                
+                return { success: true, message: 'Login successful' };
+            }
+            
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem('cybernet-current-user');
+                this.showAuth();
+            }
+            
+            updateProgress(topic, progress, lessonId = null) {
+                if (!this.currentUser) return;
+                
+                const user = this.users[this.currentUser.email];
+                user.progress[topic] = progress;
+                
+                if (lessonId) {
+                    user.completedLessons[lessonId] = true;
+                }
+                
+                user.lastActive = new Date().toISOString();
+                this.users[this.currentUser.email] = user;
+                this.currentUser = user;
+                
+                localStorage.setItem('cybernet-users', JSON.stringify(this.users));
+                localStorage.setItem('cybernet-current-user', JSON.stringify(user));
+            }
+            
+            getProgress() {
+                return this.currentUser ? this.currentUser.progress : {};
+            }
+            
+            getCompletedLessons() {
+                return this.currentUser ? Object.keys(this.currentUser.completedLessons).length : 0;
+            }
+            
+            getTotalProgress() {
+                if (!this.currentUser) return 0;
+                
+                const progress = this.currentUser.progress;
+                const values = Object.values(progress);
+                return Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+            }
+            
+            showApp() {
+                document.getElementById('auth-section').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                
+                // Update UI with user info
+                if (this.currentUser) {
+                    document.getElementById('user-name').textContent = this.currentUser.name;
+                    document.getElementById('user-avatar').textContent = this.currentUser.name.charAt(0).toUpperCase();
+                    this.updateDashboard();
+                    this.updateProgressBars();
+                }
+            }
+            
+            showAuth() {
+                document.getElementById('auth-section').classList.remove('hidden');
+                document.getElementById('app').classList.add('hidden');
+            }
+            
+            updateDashboard() {
+                if (!this.currentUser) return;
+                
+                document.getElementById('total-progress').textContent = this.getTotalProgress() + '%';
+                document.getElementById('completed-lessons').textContent = this.getCompletedLessons();
+                document.getElementById('last-active').textContent = new Date(this.currentUser.lastActive).toLocaleDateString();
+                
+                // Update progress list
+                const progressList = document.getElementById('progress-list');
+                progressList.innerHTML = '';
+                
+                Object.entries(this.currentUser.progress).forEach(([topic, progress]) => {
+                    const topicName = this.getTopicName(topic);
+                    const progressItem = document.createElement('div');
+                    progressItem.className = 'progress-item';
+                    progressItem.innerHTML = `
+                        <div class="progress-info">
+                            <strong>${topicName}</strong>
+                            <div class="progress-bar" style="margin-top: 0.5rem;">
+                                <div class="progress" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-percentage">${progress}%</div>
+                    `;
+                    progressList.appendChild(progressItem);
+                });
+            }
+            
+            updateProgressBars() {
+                const progress = this.getProgress();
+                document.querySelectorAll('.progress').forEach(bar => {
+                    const topic = bar.closest('.topic-card').getAttribute('data-topic');
+                    if (progress[topic] !== undefined) {
+                        bar.style.width = `${progress[topic]}%`;
+                    }
+                });
+            }
+            
+            getTopicName(topicKey) {
+                const topicNames = {
+                    'networking-basics': 'What is a Network?',
+                    'ip-addresses': 'IP Addresses & Subnetting',
+                    'tcp-ip': 'TCP/IP Protocol Suite',
+                    'network-devices': 'Network Devices',
+                    'network-security': 'Network Security Basics',
+                    'network-attacks': 'Common Network Attacks'
+                };
+                return topicNames[topicKey] || topicKey;
+            }
+        }
+
+        // Initialize User Manager
+        const userManager = new UserManager();
+
+        // Learning content data (same as before)
+        const learningContent = {
+            'networking-basics': {
+                title: 'What is a Network?',
+                lessons: [
+                    {
+                        id: 'networking-basics-1',
+                        title: 'Introduction to Networks',
+                        content: `
+                            <h3>What is a Computer Network?</h3>
+                            <p>A computer network is a collection of interconnected devices that can communicate with each other to share resources and information.</p>
+                            <p>Think of it like a digital highway system where data travels between computers, just like cars travel between cities.</p>
+                            
+                            <div class="concept-box">
+                                <h4>Key Concept</h4>
+                                <p>Networks allow devices to share resources like internet connection, printers, files, and applications.</p>
+                            </div>
+                            
+                            <div class="learning-image">
+                                <div style="background: #f0f0f0; padding: 2rem; border-radius: 8px; text-align: center;">
+                                    <p><strong>Simple Network Diagram</strong></p>
+                                    <p>Computer A ↔ Router ↔ Computer B</p>
+                                    <p>All connected to share resources</p>
+                                </div>
+                            </div>
+                            
+                            <h3>Why Networks Matter for Cybersecurity</h3>
+                            <p>Understanding networks is crucial for cybersecurity because:</p>
+                            <ul>
+                                <li>Most cyber attacks happen through networks</li>
+                                <li>You need to understand how data flows to protect it</li>
+                                <li>Network knowledge helps you identify suspicious activity</li>
+                                <li>You can better secure network entry points</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        id: 'networking-basics-2',
+                        title: 'Types of Networks',
+                        content: `
+                            <h3>Common Network Types</h3>
+                            <p>Networks come in different sizes and configurations depending on their purpose:</p>
+                            
+                            <div class="concept-box">
+                                <h4>LAN (Local Area Network)</h4>
+                                <p>A network covering a small geographic area like an office, home, or building. Devices are connected directly or through a central device.</p>
+                            </div>
+                            
+                            <div class="concept-box">
+                                <h4>WAN (Wide Area Network)</h4>
+                                <p>A network that spans a large geographic area, connecting multiple LANs. The internet is the largest WAN.</p>
+                            </div>
+                            
+                            <div class="concept-box">
+                                <h4>WLAN (Wireless Local Area Network)</h4>
+                                <p>A LAN that uses wireless communication instead of physical cables. Wi-Fi is the most common example.</p>
+                            </div>
+                            
+                            <h3>Network Topologies</h3>
+                            <p>How devices are arranged in a network:</p>
+                            <ul>
+                                <li><strong>Star:</strong> All devices connect to a central point</li>
+                                <li><strong>Bus:</strong> All devices connect to a single cable</li>
+                                <li><strong>Ring:</strong> Devices form a circular connection</li>
+                                <li><strong>Mesh:</strong> Devices have multiple connections to each other</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        id: 'networking-basics-3',
+                        title: 'Network Communication Basics',
+                        content: `
+                            <h3>How Devices Communicate</h3>
+                            <p>For devices to communicate on a network, they need:</p>
+                            
+                            <div class="concept-box">
+                                <h4>Protocols</h4>
+                                <p>Rules that define how data is formatted and transmitted. Like a common language that all devices understand.</p>
+                            </div>
+                            
+                            <div class="concept-box">
+                                <h4>Addresses</h4>
+                                <p>Unique identifiers for each device on the network, similar to house addresses in a city.</p>
+                            </div>
+                            
+                            <div class="concept-box">
+                                <h4>Media</h4>
+                                <p>The physical or wireless connection that carries the data between devices.</p>
+                            </div>
+                            
+                            <h3>Data Packets</h3>
+                            <p>When you send information over a network, it's broken down into small pieces called packets. Each packet contains:</p>
+                            <ul>
+                                <li>The actual data being sent</li>
+                                <li>Source and destination addresses</li>
+                                <li>Information to reassemble the data in the right order</li>
+                                <li>Error checking information</li>
+                            </ul>
+                            
+                            <div class="learning-image">
+                                <div style="background: #f0f0f0; padding: 2rem; border-radius: 8px; text-align: center;">
+                                    <p><strong>Data Transmission Process</strong></p>
+                                    <p>Data → Broken into packets → Sent over network → Reassembled at destination</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+            'ip-addresses': {
+                title: 'IP Addresses & Subnetting',
+                lessons: [
+                    {
+                        id: 'ip-addresses-1',
+                        title: 'Understanding IP Addresses',
+                        content: `
+                            <h3>What is an IP Address?</h3>
+                            <p>An IP (Internet Protocol) address is a unique identifier assigned to each device on a network, similar to a home address for your computer.</p>
+                            
+                            <div class="concept-box">
+                                <h4>Key Concept</h4>
+                                <p>IP addresses allow devices to find and communicate with each other on a network.</p>
+                            </div>
+                            
+                            <h3>Types of IP Addresses</h3>
+                            <p>There are two main versions of IP addresses in use today:</p>
+                            
+                            <div class="concept-box">
+                                <h4>IPv4 (Internet Protocol Version 4)</h4>
+                                <p>The most common format, written as four numbers separated by dots (e.g., 192.168.1.1). Each number ranges from 0 to 255.</p>
+                            </div>
+                            
+                            <div class="concept-box">
+                                <h4>IPv6 (Internet Protocol Version 6)</h4>
+                                <p>A newer format designed to replace IPv4, written as eight groups of hexadecimal numbers (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334).</p>
+                            </div>
+                            
+                            <h3>Public vs. Private IP Addresses</h3>
+                            <p>Not all IP addresses are the same:</p>
+                            <ul>
+                                <li><strong>Public IP:</strong> Unique address on the internet, assigned by your ISP</li>
+                                <li><strong>Private IP:</strong> Used within private networks (home, office), not routable on the internet</li>
+                            </ul>
+                        `
+                    }
+                ]
+            }
+        };
+
+        // Quiz questions and answers (same as before)
+        const quizData = [
+            {
+                question: "What does IP stand for in networking?",
+                options: ["Internet Protocol", "Internal Processing", "International Provider", "Internal Protocol"],
+                correct: 0
+            },
+            {
+                question: "Which device is used to connect multiple networks?",
+                options: ["Switch", "Hub", "Router", "Access Point"],
+                correct: 2
+            },
+            {
+                question: "What is the purpose of a firewall?",
+                options: ["Speed up network connections", "Block unauthorized access", "Connect wireless devices", "Assign IP addresses"],
+                correct: 1
+            },
+            {
+                question: "Which protocol is used for secure web browsing?",
+                options: ["FTP", "HTTP", "HTTPS", "SMTP"],
+                correct: 2
+            },
+            {
+                question: "What does DNS do?",
+                options: ["Provides security", "Translates domain names to IP addresses", "Manages email", "Creates wireless networks"],
+                correct: 1
+            }
+        ];
+
+        // Application state
+        let currentSection = 'home';
+        let currentTopic = null;
+        let currentLesson = 0;
+        
+        // Quiz state variables
+        let currentQuestion = 0;
+        let userAnswers = Array(quizData.length).fill(null);
+        let quizCompleted = false;
+
+        // DOM elements
+        const sections = {
+            home: document.getElementById('home-section'),
+            dashboard: document.getElementById('dashboard-section'),
+            topics: document.getElementById('topics-section'),
+            learning: document.getElementById('learning-section'),
+            test: document.getElementById('test-section')
+        };
+
+        // Initialize application
+        function initApp() {
+            setupEventListeners();
+            initQuiz();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Auth tabs
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+                    
+                    e.target.classList.add('active');
+                    document.getElementById(e.target.dataset.tab + '-form').classList.add('active');
+                });
+            });
+            
+            // Auth forms
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('register-form').addEventListener('submit', handleRegister);
+            
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', () => userManager.logout());
+            
+            // Navigation - section buttons
+            document.querySelectorAll('.section-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const section = e.target.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+            
+            // Navigation - nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const section = e.target.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+            
+            // Start learning buttons
+            document.querySelectorAll('.start-learning').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const topic = e.target.getAttribute('data-topic');
+                    startLearning(topic);
+                });
+            });
+            
+            // Topic cards
+            document.querySelectorAll('.topic-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('btn')) {
+                        const topic = card.getAttribute('data-topic');
+                        startLearning(topic);
+                    }
+                });
+            });
+            
+            // Learning navigation
+            document.getElementById('prev-lesson').addEventListener('click', prevLesson);
+            document.getElementById('next-lesson').addEventListener('click', nextLesson);
+            document.getElementById('mark-complete').addEventListener('click', markLessonComplete);
+            
+            // Quiz navigation
+            document.getElementById('prev-btn').addEventListener('click', prevQuestion);
+            document.getElementById('next-btn').addEventListener('click', nextQuestion);
+            document.getElementById('submit-btn').addEventListener('click', submitQuiz);
+            document.getElementById('retry-btn').addEventListener('click', retryQuiz);
+            document.getElementById('back-to-topics').addEventListener('click', () => showSection('topics'));
+        }
+
+        // Auth handlers
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorElement = document.getElementById('login-error');
+            
+            const result = userManager.login(email, password);
+            if (result.success) {
+                errorElement.textContent = '';
+                userManager.showApp();
+                initApp();
+            } else {
+                errorElement.textContent = result.message;
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            const errorElement = document.getElementById('register-error');
+            
+            if (password !== confirm) {
+                errorElement.textContent = 'Passwords do not match';
+                return;
+            }
+            
+            const result = userManager.register(name, email, password);
+            if (result.success) {
+                errorElement.textContent = '';
+                // Auto-login after registration
+                userManager.login(email, password);
+                userManager.showApp();
+                initApp();
+            } else {
+                errorElement.textContent = result.message;
+            }
+        }
+
+        // Show specific section
+        function showSection(sectionName) {
+            // Hide all sections
+            Object.values(sections).forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            if (sections[sectionName]) {
+                sections[sectionName].classList.remove('hidden');
+                currentSection = sectionName;
+                
+                // Update dashboard if needed
+                if (sectionName === 'dashboard') {
+                    userManager.updateDashboard();
+                }
+            }
+        }
+
+        // Start learning a topic
+        function startLearning(topic) {
+            if (learningContent[topic]) {
+                currentTopic = topic;
+                currentLesson = 0;
+                loadLesson();
+                showSection('learning');
+            }
+        }
+
+        // Load current lesson
+        function loadLesson() {
+            if (!currentTopic || !learningContent[currentTopic]) return;
+            
+            const topic = learningContent[currentTopic];
+            const lesson = topic.lessons[currentLesson];
+            
+            document.getElementById('learning-topic-title').textContent = `${topic.title} - ${lesson.title}`;
+            document.getElementById('learning-content').innerHTML = lesson.content;
+            
+            // Calculate and display progress
+            const progress = Math.round((currentLesson / topic.lessons.length) * 100);
+            document.getElementById('learning-progress').textContent = `${progress}%`;
+            
+            // Update navigation buttons
+            document.getElementById('prev-lesson').disabled = currentLesson === 0;
+            document.getElementById('next-lesson').disabled = currentLesson === topic.lessons.length - 1;
+            
+            // Update mark complete button
+            const isCompleted = userManager.currentUser?.completedLessons[lesson.id];
+            document.getElementById('mark-complete').textContent = isCompleted ? 'Completed ✓' : 'Mark as Complete';
+            document.getElementById('mark-complete').disabled = !!isCompleted;
+            
+            if (isCompleted) {
+                document.getElementById('mark-complete').classList.add('btn-success');
+            } else {
+                document.getElementById('mark-complete').classList.remove('btn-success');
+            }
+        }
+
+        // Navigate to previous lesson
+        function prevLesson() {
+            if (currentLesson > 0) {
+                currentLesson--;
+                loadLesson();
+            }
+        }
+
+        // Navigate to next lesson
+        function nextLesson() {
+            if (currentTopic && currentLesson < learningContent[currentTopic].lessons.length - 1) {
+                currentLesson++;
+                loadLesson();
+            }
+        }
+
+        // Mark lesson as complete
+        function markLessonComplete() {
+            if (!currentTopic || !userManager.currentUser) return;
+            
+            const topic = learningContent[currentTopic];
+            const lesson = topic.lessons[currentLesson];
+            
+            // Calculate new progress
+            const completedLessons = topic.lessons.reduce((count, l, index) => {
+                return count + (userManager.currentUser.completedLessons[l.id] || index < currentLesson ? 1 : 0);
+            }, 1); // +1 for current lesson
+            
+            const newProgress = Math.round((completedLessons / topic.lessons.length) * 100);
+            
+            // Update user progress
+            userManager.updateProgress(currentTopic, newProgress, lesson.id);
+            
+            // Update UI
+            loadLesson();
+            userManager.updateProgressBars();
+            
+            // Show completion message
+            setTimeout(() => {
+                alert(`Great! You've completed "${lesson.title}"\nProgress: ${newProgress}%`);
+            }, 100);
+        }
+
+        // Initialize quiz
+        function initQuiz() {
+            document.getElementById('total-questions').textContent = quizData.length;
+            loadQuestion();
+        }
+
+        // Load current question
+        function loadQuestion() {
+            const currentQuizData = quizData[currentQuestion];
+            
+            document.getElementById('question-number').textContent = currentQuestion + 1;
+            document.getElementById('question').textContent = currentQuizData.question;
+            
+            const optionsElement = document.getElementById('options');
+            optionsElement.innerHTML = '';
+            
+            currentQuizData.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('quiz-option');
+                optionElement.textContent = option;
+                optionElement.setAttribute('data-value', index);
+                
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('submit-btn').style.display = 'inline-block';
+            } else {
+                document.getElementById('next-btn').style.display = 'inline-block';
+                document.getElementById('submit-btn').style.display = 'none';
+            }
+        }
+
+        // Select an option
+        function selectOption(index) {
+            userAnswers[currentQuestion] = index;
+            
+            // Update UI to show selected option
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            }
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        // Submit quiz and show results
+        function submitQuiz() {
+            // Calculate score
+            let score = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === quizData[index].correct) {
+                    score++;
+                }
+            });
+            
+            // Display results
+            document.getElementById('score-value').textContent = score;
+            
+            if (score === quizData.length) {
+                document.getElementById('result-message').textContent = "Excellent! You have a solid understanding of networking fundamentals.";
+            } else if (score >= quizData.length * 0.7) {
+                document.getElementById('result-message').textContent = "Good job! You have a good grasp of networking concepts.";
+            } else if (score >= quizData.length * 0.5) {
+                document.getElementById('result-message').textContent = "Not bad! Review the topics to improve your understanding.";
+            } else {
+                document.getElementById('result-message').textContent = "Keep studying! Networking fundamentals are essential for cybersecurity.";
+            }
+            
+            // Show results and hide quiz
+            document.querySelector('.quiz-header').classList.add('hidden');
+            document.querySelector('.quiz-question').classList.add('hidden');
+            document.querySelector('.quiz-options').classList.add('hidden');
+            document.querySelector('.quiz-navigation').classList.add('hidden');
+            document.getElementById('results').classList.remove('hidden');
+            
+            quizCompleted = true;
+        }
+
+        // Retry quiz
+        function retryQuiz() {
+            currentQuestion = 0;
+            userAnswers = Array(quizData.length).fill(null);
+            quizCompleted = false;
+            
+            // Show quiz and hide results
+            document.querySelector('.quiz-header').classList.remove('hidden');
+            document.querySelector('.quiz-question').classList.remove('hidden');
+            document.querySelector('.quiz-options').classList.remove('hidden');
+            document.querySelector('.quiz-navigation').classList.remove('hidden');
+            document.getElementById('results').classList.add('hidden');
+            
+            loadQuestion();
+        }
+
+        // Initialize the application when page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
