@@ -3,89 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberNet Learn - Networking for Cybersecurity</title>
+    <title>CyberNet Pro - Master Networking for Cybersecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --danger: #e74c3c;
+            --primary: #1a365d;
+            --secondary: #2d3748;
+            --accent: #e53e3e;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --info: #3182ce;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-        
+
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
         }
-        
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Layout */
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
-        
+
+        /* Header & Navigation */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
+            font-weight: 800;
         }
-        
-        .logo span {
-            color: var(--secondary);
+
+        .logo-icon {
+            background: var(--gradient-accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
             align-items: center;
             gap: 2rem;
         }
-        
+
         .nav-links a, .nav-links button {
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             cursor: pointer;
             background: none;
             border: none;
             font-size: 1rem;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
+
         .nav-links a:hover, .nav-links button:hover {
-            color: var(--secondary);
             background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
         }
-        
+
         .user-info {
             display: flex;
             align-items: center;
@@ -94,47 +138,59 @@
             padding: 0.5rem 1rem;
             border-radius: 25px;
         }
-        
+
         .avatar {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background: var(--gradient-accent);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
-        
-        /* Auth Section - Fixed Centering */
+
+        /* Auth Section */
         .auth-section {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem 1rem;
         }
-        
+
         .auth-container {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
             padding: 3rem;
             width: 100%;
             max-width: 450px;
             margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-accent);
+        }
+
         .auth-tabs {
             display: flex;
             margin-bottom: 2rem;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid #f1f5f9;
             gap: 0;
         }
-        
+
         .auth-tab {
             padding: 1rem 2rem;
             background: none;
@@ -143,438 +199,162 @@
             font-size: 1.1rem;
             flex: 1;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border-bottom: 3px solid transparent;
-        }
-        
-        .auth-tab.active {
-            border-bottom: 3px solid var(--secondary);
-            color: var(--secondary);
             font-weight: 600;
+            color: #64748b;
         }
-        
+
+        .auth-tab.active {
+            border-bottom: 3px solid var(--info);
+            color: var(--info);
+        }
+
         .auth-form {
             display: none;
         }
-        
+
         .auth-form.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeInUp 0.5s ease;
         }
-        
+
         .auth-form h2 {
             text-align: center;
             margin-bottom: 2rem;
             color: var(--primary);
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--primary);
         }
-        
+
         .form-group input {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
-        
+
         .form-group input:focus {
             outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            border-color: var(--info);
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
         }
-        
+
+        /* Buttons */
         .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent), #c0392b);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--gradient-accent);
             color: white;
             padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: center;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
-        
+
         .btn-secondary {
             background: transparent;
             border: 2px solid white;
             color: white;
         }
-        
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-2px);
-        }
-        
+
         .btn-success {
-            background: linear-gradient(135deg, var(--success), #27ae60);
+            background: var(--gradient-success);
         }
-        
-        .btn-success:hover {
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
-        }
-        
+
         .btn-full {
             width: 100%;
         }
-        
+
+        /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
-        
+
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: var(--primary);
             font-size: 2.5rem;
         }
-        
+
         .section-subtitle {
             text-align: center;
             margin-bottom: 3rem;
-            color: #666;
+            color: #64748b;
             font-size: 1.2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
-        
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .topic-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid #e1e5e9;
-        }
-        
-        .topic-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .topic-icon {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: white;
-            font-size: 2.5rem;
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .topic-content {
-            padding: 2rem;
-        }
-        
-        .topic-content h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-        
-        .topic-content p {
-            margin-bottom: 1.5rem;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background-color: #f1f2f6;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            width: 0%;
-            transition: width 0.8s ease;
-            border-radius: 4px;
-        }
-        
-        .test-section {
-            background-color: var(--light);
-        }
-        
-        .quiz-container {
-            background-color: white;
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .quiz-header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        .quiz-header h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-        
-        .quiz-question {
-            margin-bottom: 2rem;
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: var(--primary);
-            line-height: 1.5;
-        }
-        
-        .quiz-options {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .quiz-option {
-            padding: 1.2rem;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .quiz-option:hover {
-            background-color: #e9ecef;
-            transform: translateX(5px);
-        }
-        
-        .quiz-option.selected {
-            background-color: var(--secondary);
-            color: white;
-            border-color: var(--secondary);
-        }
-        
-        .quiz-option.correct {
-            background-color: var(--success);
-            color: white;
-            border-color: var(--success);
-        }
-        
-        .quiz-option.incorrect {
-            background-color: var(--danger);
-            color: white;
-            border-color: var(--danger);
-        }
-        
-        .quiz-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-        }
-        
-        .quiz-results {
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-        
-        .quiz-results h2 {
-            margin-bottom: 2rem;
-            color: var(--primary);
-            font-size: 2.2rem;
-        }
-        
-        .score {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .learning-content {
-            background-color: white;
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .learning-header {
-            margin-bottom: 2rem;
-            text-align: center;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #f1f2f6;
-        }
-        
-        .learning-header h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 2.2rem;
-        }
-        
-        .learning-text {
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-        
-        .learning-text h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 1.6rem;
-        }
-        
-        .learning-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .learning-text ul {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-        
-        .learning-text li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .learning-image {
-            text-align: center;
-            margin: 2.5rem 0;
-        }
-        
-        .learning-image img {
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .learning-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid #f1f2f6;
-        }
-        
-        .concept-box {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-left: 5px solid var(--secondary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .concept-box h4 {
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-        }
-        
-        .dashboard-section {
-            background-color: var(--light);
-        }
-        
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .progress-summary {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .progress-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .progress-item:last-child {
-            border-bottom: none;
-        }
-        
-        .progress-info {
-            flex: 1;
-        }
-        
-        .progress-info strong {
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-        
-        .progress-percentage {
-            font-weight: bold;
-            color: var(--secondary);
-            margin-left: 1rem;
-            font-size: 1.2rem;
-        }
-        
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
             color: white;
-            padding: 6rem 0;
+            padding: 8rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
         }
-        
+
         .hero p {
             font-size: 1.4rem;
             max-width: 700px;
@@ -582,118 +362,563 @@
             opacity: 0.9;
             line-height: 1.6;
         }
-        
+
         .hero-buttons {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
-        footer {
-            background: linear-gradient(135deg, var(--dark), #1a252f);
+
+        /* Dashboard */
+        .dashboard-section {
+            background: var(--light);
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border-left: 5px solid var(--info);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            background: var(--gradient-accent);
             color: white;
-            padding: 3rem 0;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .progress-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-info {
+            flex: 1;
+        }
+
+        .progress-info strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #f1f5f9;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--gradient-accent);
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 4px;
+        }
+
+        .progress-percentage {
+            font-weight: 700;
+            color: var(--info);
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Topics Grid */
+        .topics-section {
+            background: white;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid #f1f5f9;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .topic-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem;
             text-align: center;
         }
-        
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-content {
+            padding: 2rem;
+        }
+
+        .topic-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-content p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Learning Section */
+        .learning-section {
+            background: var(--light);
+        }
+
+        .learning-content {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .learning-header {
+            margin-bottom: 2rem;
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .learning-header h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .learning-text {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .learning-text h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .learning-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .learning-text ul {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .learning-text li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .learning-text li::before {
+            content: '▸';
+            color: var(--info);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .learning-image {
+            text-align: center;
+            margin: 2.5rem 0;
+        }
+
+        .learning-image-placeholder {
+            background: var(--gradient-accent);
+            border-radius: 15px;
+            padding: 3rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .learning-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-left: 5px solid var(--info);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .concept-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: white;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .quiz-header h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .quiz-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-progress-bar {
+            flex: 1;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            background: var(--gradient-accent);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            padding: 1.2rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quiz-option:hover {
+            background: #f1f5f9;
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            background: var(--info);
+            color: white;
+            border-color: var(--info);
+        }
+
+        .quiz-option.correct {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .quiz-option.incorrect {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .quiz-results {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .quiz-results h2 {
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+
+        .score {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--info);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2d3748;
+            color: #a0aec0;
+        }
+
+        /* Utility Classes */
         .hidden {
             display: none !important;
         }
-        
+
         .active-section {
             display: block;
         }
-        
+
         .error-message {
-            color: var(--danger);
+            color: var(--accent);
             font-size: 0.9rem;
             margin-top: 0.5rem;
             text-align: center;
             padding: 0.5rem;
-            background: rgba(231, 76, 60, 0.1);
+            background: rgba(229, 62, 62, 0.1);
             border-radius: 4px;
         }
-        
+
         .success-message {
             color: var(--success);
             font-size: 0.9rem;
             margin-top: 0.5rem;
             text-align: center;
             padding: 0.5rem;
-            background: rgba(46, 204, 113, 0.1);
+            background: rgba(56, 161, 105, 0.1);
             border-radius: 4px;
         }
-        
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         .fade-in {
             animation: fadeIn 0.5s ease;
         }
-        
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .hero p {
                 font-size: 1.2rem;
             }
-            
+
             .topics-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .auth-container {
                 padding: 2rem;
                 margin: 1rem;
             }
-            
+
             .learning-navigation {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             .learning-navigation .btn {
                 width: 100%;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .hero-buttons .btn {
                 width: 100%;
                 max-width: 300px;
             }
+
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
         }
-        
+
         @media (max-width: 480px) {
             .container {
                 width: 95%;
             }
-            
+
             .auth-container {
                 padding: 1.5rem;
             }
-            
+
             .auth-tab {
                 padding: 0.8rem 1rem;
             }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
                 font-size: 2rem;
             }
         }
@@ -702,10 +927,14 @@
 <body>
     <!-- Authentication Section -->
     <section class="auth-section active-section" id="auth-section">
-        <div class="auth-container">
+        <div class="auth-container fade-in-up">
             <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login">Login</button>
-                <button class="auth-tab" data-tab="register">Register</button>
+                <button class="auth-tab active" data-tab="login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="auth-tab" data-tab="register">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
             </div>
             
             <form class="auth-form active" id="login-form">
@@ -719,7 +948,9 @@
                     <input type="password" id="login-password" placeholder="Enter your password" required>
                 </div>
                 <div id="login-error" class="error-message"></div>
-                <button type="submit" class="btn btn-full">Sign In</button>
+                <button type="submit" class="btn btn-full">
+                    <i class="fas fa-lock"></i> Sign In
+                </button>
             </form>
             
             <form class="auth-form" id="register-form">
@@ -741,7 +972,9 @@
                     <input type="password" id="register-confirm" placeholder="Confirm your password" required>
                 </div>
                 <div id="register-error" class="error-message"></div>
-                <button type="submit" class="btn btn-full">Create Account</button>
+                <button type="submit" class="btn btn-full">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
             </form>
         </div>
     </section>
@@ -751,16 +984,39 @@
         <header>
             <div class="container">
                 <nav>
-                    <div class="logo">Cyber<span>Net</span> Learn</div>
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span>CyberNet Pro</span>
+                    </div>
                     <ul class="nav-links">
-                        <li><a class="nav-link" data-section="home">Home</a></li>
-                        <li><a class="nav-link" data-section="dashboard">Dashboard</a></li>
-                        <li><a class="nav-link" data-section="topics">Learning Topics</a></li>
-                        <li><a class="nav-link" data-section="test">Test Yourself</a></li>
+                        <li>
+                            <a class="nav-link" data-section="home">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" data-section="dashboard">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" data-section="topics">
+                                <i class="fas fa-book-open"></i> Learning
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" data-section="test">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </li>
                         <li class="user-info">
                             <div class="avatar" id="user-avatar">U</div>
                             <span id="user-name">User</span>
-                            <button id="logout-btn">Logout</button>
+                            <button id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
                         </li>
                     </ul>
                 </nav>
@@ -769,11 +1025,15 @@
 
         <section class="hero active-section" id="home-section">
             <div class="container">
-                <h1>Master Networking for Cybersecurity</h1>
-                <p>Learn networking fundamentals in simple, easy-to-understand terms. Build the foundation you need for a successful cybersecurity career with our interactive platform.</p>
+                <h1>Master Cybersecurity Networking</h1>
+                <p>Build a solid foundation in networking concepts essential for cybersecurity. Learn through interactive lessons, hands-on exercises, and real-world scenarios.</p>
                 <div class="hero-buttons">
-                    <button class="btn section-btn" data-section="topics">Start Learning Now</button>
-                    <button class="btn btn-secondary section-btn" data-section="test">Test Your Knowledge</button>
+                    <button class="btn section-btn" data-section="topics">
+                        <i class="fas fa-play-circle"></i> Start Learning
+                    </button>
+                    <button class="btn btn-secondary section-btn" data-section="test">
+                        <i class="fas fa-brain"></i> Test Your Knowledge
+                    </button>
                 </div>
             </div>
         </section>
@@ -781,22 +1041,34 @@
         <section id="dashboard-section" class="hidden">
             <div class="container">
                 <h2 class="section-title">Your Learning Dashboard</h2>
-                <p class="section-subtitle">Track your progress and continue your learning journey</p>
+                <p class="section-subtitle">Track your progress and continue your cybersecurity journey</p>
                 
                 <div class="dashboard-stats">
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                         <div class="stat-number" id="total-progress">0%</div>
                         <div>Overall Progress</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
                         <div class="stat-number" id="completed-lessons">0</div>
                         <div>Lessons Completed</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
                         <div class="stat-number" id="total-topics">6</div>
                         <div>Learning Topics</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
                         <div class="stat-number" id="last-active">Today</div>
                         <div>Last Active</div>
                     </div>
@@ -813,79 +1085,115 @@
 
         <section id="topics-section" class="hidden">
             <div class="container">
-                <h2 class="section-title">Learning Topics</h2>
-                <p class="section-subtitle">Explore our comprehensive networking curriculum designed for cybersecurity beginners</p>
+                <h2 class="section-title">Learning Path</h2>
+                <p class="section-subtitle">Master networking fundamentals through our comprehensive curriculum</p>
                 
                 <div class="topics-grid">
                     <div class="topic-card" data-topic="networking-basics">
-                        <div class="topic-icon">🌐</div>
+                        <div class="topic-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>Networking Fundamentals</h3>
+                        </div>
                         <div class="topic-content">
-                            <h3>What is a Network?</h3>
-                            <p>Understand the basic concept of computer networks and how devices communicate with each other in simple, easy-to-understand terms.</p>
+                            <p>Understand the core concepts of computer networks, protocols, and communication models.</p>
                             <div class="progress-bar">
                                 <div class="progress" data-progress="0"></div>
                             </div>
-                            <button class="btn start-learning" data-topic="networking-basics">Start Learning</button>
+                            <button class="btn start-learning" data-topic="networking-basics">
+                                <i class="fas fa-play"></i> Start Learning
+                            </button>
                         </div>
                     </div>
                     
-                    <div class="topic-card" data-topic="ip-addresses">
-                        <div class="topic-icon">📍</div>
+                    <div class="topic-card" data-topic="ip-addressing">
+                        <div class="topic-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>IP Addressing & Subnetting</h3>
+                        </div>
                         <div class="topic-content">
-                            <h3>IP Addresses & Subnetting</h3>
-                            <p>Learn about IP addresses, their types, and how to divide networks using subnetting for better organization and security.</p>
+                            <p>Master IP addressing, subnet masks, CIDR notation, and network segmentation.</p>
                             <div class="progress-bar">
                                 <div class="progress" data-progress="0"></div>
                             </div>
-                            <button class="btn start-learning" data-topic="ip-addresses">Start Learning</button>
+                            <button class="btn start-learning" data-topic="ip-addressing">
+                                <i class="fas fa-play"></i> Start Learning
+                            </button>
                         </div>
                     </div>
                     
                     <div class="topic-card" data-topic="tcp-ip">
-                        <div class="topic-icon">🔗</div>
-                        <div class="topic-content">
+                        <div class="topic-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
                             <h3>TCP/IP Protocol Suite</h3>
-                            <p>Explore the foundational protocols that power the internet and modern networks. Understand how data travels across networks.</p>
+                        </div>
+                        <div class="topic-content">
+                            <p>Explore the TCP/IP model, protocols, ports, and network communication processes.</p>
                             <div class="progress-bar">
                                 <div class="progress" data-progress="0"></div>
                             </div>
-                            <button class="btn start-learning" data-topic="tcp-ip">Start Learning</button>
+                            <button class="btn start-learning" data-topic="tcp-ip">
+                                <i class="fas fa-play"></i> Start Learning
+                            </button>
                         </div>
                     </div>
                     
                     <div class="topic-card" data-topic="network-devices">
-                        <div class="topic-icon">🖧</div>
+                        <div class="topic-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3>Network Devices & Infrastructure</h3>
+                        </div>
                         <div class="topic-content">
-                            <h3>Network Devices</h3>
-                            <p>Get familiar with routers, switches, firewalls, and other essential networking hardware that form the backbone of networks.</p>
+                            <p>Learn about routers, switches, firewalls, and other critical network components.</p>
                             <div class="progress-bar">
                                 <div class="progress" data-progress="0"></div>
                             </div>
-                            <button class="btn start-learning" data-topic="network-devices">Start Learning</button>
+                            <button class="btn start-learning" data-topic="network-devices">
+                                <i class="fas fa-play"></i> Start Learning
+                            </button>
                         </div>
                     </div>
                     
                     <div class="topic-card" data-topic="network-security">
-                        <div class="topic-icon">🔒</div>
+                        <div class="topic-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Network Security Principles</h3>
+                        </div>
                         <div class="topic-content">
-                            <h3>Network Security Basics</h3>
-                            <p>Learn fundamental security concepts and common threats to network infrastructure. Build your cybersecurity foundation.</p>
+                            <p>Understand security concepts, threats, and defense mechanisms for networks.</p>
                             <div class="progress-bar">
                                 <div class="progress" data-progress="0"></div>
                             </div>
-                            <button class="btn start-learning" data-topic="network-security">Start Learning</button>
+                            <button class="btn start-learning" data-topic="network-security">
+                                <i class="fas fa-play"></i> Start Learning
+                            </button>
                         </div>
                     </div>
                     
-                    <div class="topic-card" data-topic="network-attacks">
-                        <div class="topic-icon">⚔️</div>
+                    <div class="topic-card" data-topic="cyber-threats">
+                        <div class="topic-header">
+                            <div class="topic-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h3>Cyber Threats & Defense</h3>
+                        </div>
                         <div class="topic-content">
-                            <h3>Common Network Attacks</h3>
-                            <p>Understand how attackers exploit network vulnerabilities and learn defense strategies to protect against common threats.</p>
+                            <p>Identify common network attacks and learn effective defense strategies.</p>
                             <div class="progress-bar">
                                 <div class="progress" data-progress="0"></div>
                             </div>
-                            <button class="btn start-learning" data-topic="network-attacks">Start Learning</button>
+                            <button class="btn start-learning" data-topic="cyber-threats">
+                                <i class="fas fa-play"></i> Start Learning
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -896,7 +1204,7 @@
             <div class="container">
                 <div class="learning-content">
                     <div class="learning-header">
-                        <h2 id="learning-topic-title">What is a Network?</h2>
+                        <h2 id="learning-topic-title">Networking Fundamentals</h2>
                         <p>Your Progress: <span id="learning-progress">0%</span> Complete</p>
                     </div>
                     
@@ -905,23 +1213,34 @@
                     </div>
                     
                     <div class="learning-navigation">
-                        <button class="btn" id="prev-lesson">← Previous Lesson</button>
-                        <button class="btn" id="mark-complete">Mark as Complete</button>
-                        <button class="btn" id="next-lesson">Next Lesson →</button>
+                        <button class="btn" id="prev-lesson">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn" id="mark-complete">
+                            <i class="fas fa-check"></i> Mark Complete
+                        </button>
+                        <button class="btn" id="next-lesson">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="test-section hidden" id="test-section">
+        <section class="quiz-section hidden" id="test-section">
             <div class="container">
-                <h2 class="section-title">Test Your Knowledge</h2>
-                <p class="section-subtitle">Take this quiz to assess your understanding of networking fundamentals</p>
+                <h2 class="section-title">Knowledge Assessment</h2>
+                <p class="section-subtitle">Test your understanding of networking concepts</p>
                 
                 <div class="quiz-container">
                     <div class="quiz-header">
                         <h3>Networking Fundamentals Quiz</h3>
-                        <p>Question <span id="question-number">1</span> of <span id="total-questions">5</span></p>
+                        <div class="quiz-progress">
+                            <span>Question <span id="question-number">1</span> of <span id="total-questions">5</span></span>
+                            <div class="quiz-progress-bar">
+                                <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="quiz-question" id="question">
@@ -929,25 +1248,47 @@
                     </div>
                     
                     <div class="quiz-options" id="options">
-                        <div class="quiz-option" data-value="0">Internet Protocol</div>
-                        <div class="quiz-option" data-value="1">Internal Processing</div>
-                        <div class="quiz-option" data-value="2">International Provider</div>
-                        <div class="quiz-option" data-value="3">Internal Protocol</div>
+                        <div class="quiz-option" data-value="0">
+                            <span class="option-letter">A</span>
+                            <span class="option-text">Internet Protocol</span>
+                        </div>
+                        <div class="quiz-option" data-value="1">
+                            <span class="option-letter">B</span>
+                            <span class="option-text">Internal Processing</span>
+                        </div>
+                        <div class="quiz-option" data-value="2">
+                            <span class="option-letter">C</span>
+                            <span class="option-text">International Provider</span>
+                        </div>
+                        <div class="quiz-option" data-value="3">
+                            <span class="option-letter">D</span>
+                            <span class="option-text">Internal Protocol</span>
+                        </div>
                     </div>
                     
                     <div class="quiz-navigation">
-                        <button class="btn" id="prev-btn" disabled>← Previous</button>
-                        <button class="btn" id="next-btn">Next →</button>
-                        <button class="btn" id="submit-btn" style="display: none;">Submit Quiz</button>
+                        <button class="btn" id="prev-btn" disabled>
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn" id="next-btn">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn" id="submit-btn" style="display: none;">
+                            <i class="fas fa-paper-plane"></i> Submit Quiz
+                        </button>
                     </div>
                     
                     <div class="quiz-results hidden" id="results">
                         <h2>Quiz Complete! 🎉</h2>
-                        <div class="score">Your Score: <span id="score-value">0</span>/5</div>
+                        <div class="score" id="score-value">0/5</div>
                         <p id="result-message" style="font-size: 1.2rem; margin-bottom: 2rem;"></p>
                         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                            <button class="btn" id="retry-btn">Try Again</button>
-                            <button class="btn btn-secondary" id="back-to-topics">Back to Topics</button>
+                            <button class="btn" id="retry-btn">
+                                <i class="fas fa-redo"></i> Try Again
+                            </button>
+                            <button class="btn btn-secondary" id="back-to-topics">
+                                <i class="fas fa-book"></i> Back to Topics
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -956,8 +1297,42 @@
 
         <footer>
             <div class="container">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">CyberNet Learn - Simplifying Networking for Cybersecurity Beginners</p>
-                <p>&copy; 2023 CyberNet Learn. All rights reserved. | Building the next generation of cybersecurity professionals</p>
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>CyberNet Pro</h3>
+                        <p>Master networking for cybersecurity through interactive learning and hands-on practice.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" data-section="home">Home</a></li>
+                            <li><a href="#" data-section="dashboard">Dashboard</a></li>
+                            <li><a href="#" data-section="topics">Learning Path</a></li>
+                            <li><a href="#" data-section="test">Assessment</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Learning Materials</a></li>
+                            <li><a href="#">Practice Labs</a></li>
+                            <li><a href="#">Community Forum</a></li>
+                            <li><a href="#">Career Guidance</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect With Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                            <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 CyberNet Pro. All rights reserved. | Building the next generation of cybersecurity professionals</p>
+                </div>
             </div>
         </footer>
     </div>
@@ -967,12 +1342,12 @@
         class UserManager {
             constructor() {
                 this.currentUser = null;
-                this.users = JSON.parse(localStorage.getItem('cybernet-users')) || {};
+                this.users = JSON.parse(localStorage.getItem('cybernet-pro-users')) || {};
                 this.init();
             }
             
             init() {
-                const savedUser = localStorage.getItem('cybernet-current-user');
+                const savedUser = localStorage.getItem('cybernet-pro-current-user');
                 if (savedUser) {
                     this.currentUser = JSON.parse(savedUser);
                     this.showApp();
@@ -997,18 +1372,18 @@
                     createdAt: new Date().toISOString(),
                     progress: {
                         'networking-basics': 0,
-                        'ip-addresses': 0,
+                        'ip-addressing': 0,
                         'tcp-ip': 0,
                         'network-devices': 0,
                         'network-security': 0,
-                        'network-attacks': 0
+                        'cyber-threats': 0
                     },
                     completedLessons: {},
                     quizScores: [],
                     lastActive: new Date().toISOString()
                 };
                 
-                localStorage.setItem('cybernet-users', JSON.stringify(this.users));
+                localStorage.setItem('cybernet-pro-users', JSON.stringify(this.users));
                 return { success: true, message: 'Account created successfully! Redirecting...' };
             }
             
@@ -1025,15 +1400,15 @@
                 this.currentUser = user;
                 user.lastActive = new Date().toISOString();
                 this.users[email] = user;
-                localStorage.setItem('cybernet-users', JSON.stringify(this.users));
-                localStorage.setItem('cybernet-current-user', JSON.stringify(user));
+                localStorage.setItem('cybernet-pro-users', JSON.stringify(this.users));
+                localStorage.setItem('cybernet-pro-current-user', JSON.stringify(user));
                 
                 return { success: true, message: 'Login successful! Welcome back.' };
             }
             
             logout() {
                 this.currentUser = null;
-                localStorage.removeItem('cybernet-current-user');
+                localStorage.removeItem('cybernet-pro-current-user');
                 this.showAuth();
             }
             
@@ -1051,8 +1426,8 @@
                 this.users[this.currentUser.email] = user;
                 this.currentUser = user;
                 
-                localStorage.setItem('cybernet-users', JSON.stringify(this.users));
-                localStorage.setItem('cybernet-current-user', JSON.stringify(user));
+                localStorage.setItem('cybernet-pro-users', JSON.stringify(this.users));
+                localStorage.setItem('cybernet-pro-current-user', JSON.stringify(user));
             }
             
             getProgress() {
@@ -1135,12 +1510,12 @@
             
             getTopicName(topicKey) {
                 const topicNames = {
-                    'networking-basics': 'What is a Network?',
-                    'ip-addresses': 'IP Addresses & Subnetting',
+                    'networking-basics': 'Networking Fundamentals',
+                    'ip-addressing': 'IP Addressing & Subnetting',
                     'tcp-ip': 'TCP/IP Protocol Suite',
-                    'network-devices': 'Network Devices',
-                    'network-security': 'Network Security Basics',
-                    'network-attacks': 'Common Network Attacks'
+                    'network-devices': 'Network Devices & Infrastructure',
+                    'network-security': 'Network Security Principles',
+                    'cyber-threats': 'Cyber Threats & Defense'
                 };
                 return topicNames[topicKey] || topicKey;
             }
@@ -1152,125 +1527,151 @@
         // Learning content data
         const learningContent = {
             'networking-basics': {
-                title: 'What is a Network?',
+                title: 'Networking Fundamentals',
                 lessons: [
                     {
                         id: 'networking-basics-1',
-                        title: 'Introduction to Networks',
+                        title: 'Introduction to Computer Networks',
                         content: `
                             <h3>What is a Computer Network?</h3>
-                            <p>A computer network is a collection of interconnected devices that can communicate with each other to share resources and information. Think of it like a digital highway system where data travels between computers, just like cars travel between cities.</p>
+                            <p>A computer network is a collection of interconnected devices that can communicate with each other to share resources and information. Networks enable devices to exchange data, share hardware resources like printers, and access the internet.</p>
                             
                             <div class="concept-box">
-                                <h4>Key Concept</h4>
-                                <p>Networks allow devices to share resources like internet connection, printers, files, and applications efficiently.</p>
+                                <h4>Key Concept: Network Communication</h4>
+                                <p>Think of a network as a digital highway system where data travels between computers, similar to how cars travel between cities. Each device on the network has a unique address, and data is packaged into packets for efficient transmission.</p>
                             </div>
                             
                             <div class="learning-image">
-                                <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid #e9ecef;">
-                                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem;">Simple Network Diagram</p>
-                                    <p style="font-size: 1.1rem; color: #666;">Computer A ↔ Router ↔ Computer B</p>
-                                    <p style="font-size: 1rem; color: #888; margin-top: 0.5rem;">All connected to share resources and communicate</p>
+                                <div class="learning-image-placeholder">
+                                    <i class="fas fa-network-wired fa-3x mb-2"></i>
+                                    <p>Network Topology Visualization</p>
                                 </div>
                             </div>
                             
                             <h3>Why Networks Matter for Cybersecurity</h3>
-                            <p>Understanding networks is absolutely crucial for cybersecurity because:</p>
+                            <p>Understanding networks is absolutely crucial for cybersecurity professionals because:</p>
                             <ul>
-                                <li><strong>Most cyber attacks happen through networks</strong> - attackers target network vulnerabilities</li>
-                                <li><strong>You need to understand how data flows</strong> to properly protect sensitive information</li>
-                                <li><strong>Network knowledge helps identify suspicious activity</strong> and potential threats</li>
-                                <li><strong>You can better secure network entry points</strong> and prevent unauthorized access</li>
+                                <li><strong>Most cyber attacks target network vulnerabilities</strong> - attackers exploit weaknesses in network configurations and protocols</li>
+                                <li><strong>You need to understand data flow</strong> to properly protect sensitive information as it moves across networks</li>
+                                <li><strong>Network monitoring helps identify suspicious activity</strong> and potential security breaches in real-time</li>
+                                <li><strong>Proper network segmentation</strong> can contain breaches and limit damage from successful attacks</li>
+                            </ul>
+                            
+                            <h3>Basic Network Components</h3>
+                            <p>Every network consists of several key components:</p>
+                            <ul>
+                                <li><strong>Nodes:</strong> Devices connected to the network (computers, servers, printers)</li>
+                                <li><strong>Links:</strong> Physical or wireless connections between nodes</li>
+                                <li><strong>Protocols:</strong> Rules governing data transmission</li>
+                                <li><strong>Network Interface Cards (NICs):</strong> Hardware that connects devices to the network</li>
                             </ul>
                         `
                     },
                     {
                         id: 'networking-basics-2',
-                        title: 'Types of Networks',
+                        title: 'Network Types and Topologies',
                         content: `
                             <h3>Common Network Types</h3>
-                            <p>Networks come in different sizes and configurations depending on their purpose and geographic scope:</p>
+                            <p>Networks are classified based on their geographical scope and purpose:</p>
                             
                             <div class="concept-box">
                                 <h4>LAN (Local Area Network)</h4>
-                                <p>A network covering a small geographic area like an office, home, or building. Devices are connected directly or through a central device. Typically used for internal communication and resource sharing.</p>
+                                <p>A network covering a small geographic area like an office, home, or building. Devices are connected directly or through a central device. LANs typically use Ethernet or Wi-Fi technology and are characterized by high-speed data transfer rates.</p>
                             </div>
                             
                             <div class="concept-box">
                                 <h4>WAN (Wide Area Network)</h4>
-                                <p>A network that spans a large geographic area, connecting multiple LANs across cities or countries. The internet is the largest WAN in existence, connecting networks worldwide.</p>
+                                <p>A network that spans a large geographic area, connecting multiple LANs across cities or countries. The internet is the largest WAN in existence. WANs use technologies like MPLS, Frame Relay, and VPNs to connect distant locations.</p>
                             </div>
                             
                             <div class="concept-box">
                                 <h4>WLAN (Wireless Local Area Network)</h4>
-                                <p>A LAN that uses wireless communication instead of physical cables. Wi-Fi is the most common example, allowing devices to connect without physical constraints.</p>
+                                <p>A LAN that uses wireless communication instead of physical cables. Wi-Fi is the most common example, allowing devices to connect without physical constraints. WLANs provide mobility but require careful security configuration.</p>
                             </div>
                             
                             <h3>Network Topologies</h3>
-                            <p>How devices are physically or logically arranged in a network affects performance and reliability:</p>
+                            <p>Network topology refers to the physical or logical arrangement of devices in a network. Different topologies offer various advantages and disadvantages:</p>
                             <ul>
-                                <li><strong>Star:</strong> All devices connect to a central point (hub or switch) - most common in modern networks</li>
-                                <li><strong>Bus:</strong> All devices connect to a single cable - simple but prone to single points of failure</li>
-                                <li><strong>Ring:</strong> Devices form a circular connection - data travels in one direction around the ring</li>
-                                <li><strong>Mesh:</strong> Devices have multiple connections to each other - highly reliable but expensive</li>
+                                <li><strong>Star:</strong> All devices connect to a central point (hub or switch) - most common in modern networks, easy to troubleshoot but creates a single point of failure</li>
+                                <li><strong>Bus:</strong> All devices connect to a single cable - simple design but prone to single points of failure and difficult to troubleshoot</li>
+                                <li><strong>Ring:</strong> Devices form a circular connection - data travels in one direction around the ring, provides orderly access but failure of one device can break the entire network</li>
+                                <li><strong>Mesh:</strong> Devices have multiple connections to each other - highly reliable but expensive to implement and maintain</li>
+                                <li><strong>Hybrid:</strong> Combination of two or more topologies - provides flexibility but can be complex to manage</li>
                             </ul>
+                            
+                            <div class="learning-image">
+                                <div class="learning-image-placeholder">
+                                    <i class="fas fa-sitemap fa-3x mb-2"></i>
+                                    <p>Network Topology Examples</p>
+                                </div>
+                            </div>
                         `
                     },
                     {
                         id: 'networking-basics-3',
-                        title: 'Network Communication Basics',
+                        title: 'Network Communication Fundamentals',
                         content: `
                             <h3>How Devices Communicate</h3>
-                            <p>For devices to successfully communicate on a network, they need three essential components:</p>
+                            <p>For devices to successfully communicate on a network, they need three essential components working together:</p>
                             
                             <div class="concept-box">
                                 <h4>Protocols</h4>
-                                <p>Rules that define how data is formatted, transmitted, and received. Like a common language that all devices understand. Examples include TCP/IP, HTTP, and FTP.</p>
+                                <p>Rules that define how data is formatted, transmitted, and received. Protocols ensure that devices from different manufacturers can communicate effectively. Common protocols include TCP/IP, HTTP, FTP, and DNS. Each protocol serves a specific purpose in the communication process.</p>
                             </div>
                             
                             <div class="concept-box">
                                 <h4>Addresses</h4>
-                                <p>Unique identifiers for each device on the network, similar to house addresses in a city. IP addresses and MAC addresses ensure data reaches the correct destination.</p>
+                                <p>Unique identifiers for each device on the network, similar to house addresses in a city. IP addresses (logical addresses) and MAC addresses (physical addresses) ensure data reaches the correct destination. Without proper addressing, network communication would be impossible.</p>
                             </div>
                             
                             <div class="concept-box">
                                 <h4>Media</h4>
-                                <p>The physical or wireless connection that carries the data between devices. This includes Ethernet cables, fiber optics, or radio waves for wireless communication.</p>
+                                <p>The physical or wireless connection that carries the data between devices. This includes Ethernet cables, fiber optics, or radio waves for wireless communication. The choice of media affects network speed, reliability, and security.</p>
                             </div>
                             
-                            <h3>Data Packets - The Building Blocks</h3>
-                            <p>When you send information over a network, it's broken down into small, manageable pieces called packets. Each packet contains:</p>
+                            <h3>Data Packets - The Building Blocks of Network Communication</h3>
+                            <p>When you send information over a network, it's broken down into small, manageable pieces called packets. This process, known as packet switching, makes network communication efficient and reliable. Each packet contains:</p>
                             <ul>
-                                <li><strong>The actual data</strong> being sent (your message, file, or request)</li>
-                                <li><strong>Source and destination addresses</strong> (where it's from and where it's going)</li>
-                                <li><strong>Sequence information</strong> to reassemble the data in the right order</li>
-                                <li><strong>Error checking information</strong> to ensure data integrity</li>
+                                <li><strong>Header:</strong> Contains source and destination addresses, sequence information, and protocol details</li>
+                                <li><strong>Payload:</strong> The actual data being sent (your message, file, or request)</li>
+                                <li><strong>Trailer:</strong> Contains error checking information to ensure data integrity during transmission</li>
                             </ul>
                             
                             <div class="learning-image">
-                                <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid #e9ecef;">
-                                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem;">Data Transmission Process</p>
-                                    <p style="font-size: 1.1rem; color: #666;">Data → Broken into packets → Sent over network → Reassembled at destination</p>
-                                    <p style="font-size: 1rem; color: #888; margin-top: 0.5rem;">This process ensures reliable and efficient data transfer</p>
+                                <div class="learning-image-placeholder">
+                                    <i class="fas fa-box fa-3x mb-2"></i>
+                                    <p>Data Packet Structure</p>
                                 </div>
                             </div>
+                            
+                            <h3>The Data Transmission Process</h3>
+                            <p>Network communication follows a systematic process:</p>
+                            <ol>
+                                <li><strong>Data Segmentation:</strong> Large files are broken into smaller packets</li>
+                                <li><strong>Addressing:</strong> Each packet is labeled with source and destination addresses</li>
+                                <li><strong>Transmission:</strong> Packets are sent over the network, potentially taking different routes</li>
+                                <li><strong>Reassembly:</strong> Packets are reassembled in the correct order at the destination</li>
+                                <li><strong>Verification:</strong> Error checking ensures data integrity</li>
+                            </ol>
+                            
+                            <p>This packet-switched approach allows networks to handle multiple communications simultaneously and reroute data around network failures, making modern networks robust and efficient.</p>
                         `
                     }
                 ]
             },
-            'ip-addresses': {
-                title: 'IP Addresses & Subnetting',
+            'ip-addressing': {
+                title: 'IP Addressing & Subnetting',
                 lessons: [
                     {
-                        id: 'ip-addresses-1',
+                        id: 'ip-addressing-1',
                         title: 'Understanding IP Addresses',
                         content: `
                             <h3>What is an IP Address?</h3>
-                            <p>An IP (Internet Protocol) address is a unique identifier assigned to each device on a network, similar to a home address for your computer. It allows devices to find and communicate with each other across networks.</p>
+                            <p>An IP (Internet Protocol) address is a unique identifier assigned to each device on a network, similar to a home address for your computer. It allows devices to find and communicate with each other across networks, whether locally or across the internet.</p>
                             
                             <div class="concept-box">
-                                <h4>Key Concept</h4>
-                                <p>Just like every house has a unique address, every device on a network needs a unique IP address to send and receive data properly.</p>
+                                <h4>Key Concept: Network Addressing</h4>
+                                <p>Just like every house has a unique address that tells mail carriers where to deliver packages, every device on a network needs a unique IP address to send and receive data properly. Without proper addressing, network communication would be chaotic and unreliable.</p>
                             </div>
                             
                             <h3>Types of IP Addresses</h3>
@@ -1278,29 +1679,37 @@
                             
                             <div class="concept-box">
                                 <h4>IPv4 (Internet Protocol Version 4)</h4>
-                                <p>The most common format, written as four numbers separated by dots (e.g., 192.168.1.1). Each number ranges from 0 to 255. IPv4 provides about 4.3 billion unique addresses.</p>
+                                <p>The most common format, written as four numbers separated by dots (e.g., 192.168.1.1). Each number (octet) ranges from 0 to 255. IPv4 provides about 4.3 billion unique addresses, which proved insufficient for the growth of the internet.</p>
                             </div>
                             
                             <div class="concept-box">
                                 <h4>IPv6 (Internet Protocol Version 6)</h4>
-                                <p>A newer format designed to replace IPv4 due to address exhaustion. Written as eight groups of hexadecimal numbers (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334). Provides virtually unlimited addresses.</p>
+                                <p>A newer format designed to replace IPv4 due to address exhaustion. Written as eight groups of hexadecimal numbers separated by colons (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334). IPv6 provides 340 undecillion addresses - essentially unlimited for practical purposes.</p>
                             </div>
                             
                             <h3>Public vs. Private IP Addresses</h3>
-                            <p>Not all IP addresses are created equal - understanding the difference is crucial for network security:</p>
+                            <p>Not all IP addresses are created equal - understanding the difference is crucial for network security and design:</p>
                             <ul>
-                                <li><strong>Public IP:</strong> Unique address on the internet, assigned by your ISP. This is your network's "front door" to the internet.</li>
-                                <li><strong>Private IP:</strong> Used within private networks (home, office), not routable on the internet. These are like "room numbers" inside your network.</li>
+                                <li><strong>Public IP:</strong> Unique address on the internet, assigned by your ISP. This is your network's "front door" to the internet. Public IPs must be globally unique.</li>
+                                <li><strong>Private IP:</strong> Used within private networks (home, office), not routable on the internet. These are like "room numbers" inside your network. Private IPs can be reused in different private networks.</li>
                             </ul>
                             
                             <div class="learning-image">
-                                <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center; border: 2px solid #e9ecef;">
-                                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem;">IP Address Example</p>
-                                    <p style="font-size: 1.1rem; color: #666;">Public IP: 203.0.113.1 (Internet-facing)</p>
-                                    <p style="font-size: 1.1rem; color: #666;">Private IP: 192.168.1.15 (Internal network)</p>
-                                    <p style="font-size: 1rem; color: #888; margin-top: 0.5rem;">Your router manages the translation between them</p>
+                                <div class="learning-image-placeholder">
+                                    <i class="fas fa-map-marked-alt fa-3x mb-2"></i>
+                                    <p>IP Address Structure and Ranges</p>
                                 </div>
                             </div>
+                            
+                            <h3>Private IP Address Ranges</h3>
+                            <p>The Internet Assigned Numbers Authority (IANA) reserved the following IP address ranges for private networks:</p>
+                            <ul>
+                                <li><strong>Class A:</strong> 10.0.0.0 to 10.255.255.255 (16.7 million addresses)</li>
+                                <li><strong>Class B:</strong> 172.16.0.0 to 172.31.255.255 (1 million addresses)</li>
+                                <li><strong>Class C:</strong> 192.168.0.0 to 192.168.255.255 (65,536 addresses)</li>
+                            </ul>
+                            
+                            <p>These addresses cannot be routed on the public internet, providing a basic level of security through obscurity. Network Address Translation (NAT) allows multiple devices with private IPs to share a single public IP for internet access.</p>
                         `
                     }
                 ]
@@ -1382,11 +1791,12 @@
             document.getElementById('logout-btn').addEventListener('click', () => userManager.logout());
             
             // Navigation
-            document.querySelectorAll('.section-btn, .nav-link').forEach(btn => {
+            document.querySelectorAll('.section-btn, .nav-link, .footer-links a').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const section = e.target.getAttribute('data-section');
-                    showSection(section);
+                    const section = e.target.getAttribute('data-section') || 
+                                   e.target.closest('a').getAttribute('data-section');
+                    if (section) showSection(section);
                 });
             });
             
@@ -1581,7 +1991,14 @@
         // Initialize quiz
         function initQuiz() {
             document.getElementById('total-questions').textContent = quizData.length;
+            updateQuizProgress();
             loadQuestion();
+        }
+
+        // Update quiz progress bar
+        function updateQuizProgress() {
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('quiz-progress-fill').style.width = `${progress}%`;
         }
 
         // Load current question
@@ -1597,8 +2014,14 @@
             currentQuizData.options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('quiz-option');
-                optionElement.textContent = option;
                 optionElement.setAttribute('data-value', index);
+                
+                const optionLetter = String.fromCharCode(65 + index); // A, B, C, D
+                
+                optionElement.innerHTML = `
+                    <span class="option-letter">${optionLetter}</span>
+                    <span class="option-text">${option}</span>
+                `;
                 
                 if (userAnswers[currentQuestion] === index) {
                     optionElement.classList.add('selected');
@@ -1617,6 +2040,8 @@
                 document.getElementById('next-btn').style.display = 'inline-block';
                 document.getElementById('submit-btn').style.display = 'none';
             }
+            
+            updateQuizProgress();
         }
 
         // Select an option
@@ -1653,7 +2078,7 @@
                 }
             });
             
-            document.getElementById('score-value').textContent = score;
+            document.getElementById('score-value').textContent = `${score}/${quizData.length}`;
             
             if (score === quizData.length) {
                 document.getElementById('result-message').textContent = "🎉 Excellent! You have a solid understanding of networking fundamentals. Perfect score!";
